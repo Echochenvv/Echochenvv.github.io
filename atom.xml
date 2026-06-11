@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Echochenvv</name>
+  </author>
+  <generator uri="https://hexo.io/">Hexo</generator>
+  <id>https://echochenvv.github.io/</id>
+  <link href="https://echochenvv.github.io/" rel="alternate"/>
+  <link href="https://echochenvv.github.io/atom.xml" rel="self"/>
+  <rights>All rights reserved 2026, Echochenvv</rights>
+  <subtitle>Echochenvv 的个人博客</subtitle>
+  <title>Echochenvv</title>
+  <updated>2026-06-11T07:37:26.855Z</updated>
+  <entry>
+    <author>
+      <name>Echochenvv</name>
+    </author>
+    <content>
+      <![CDATA[<p>这里是 Echochenvv 的新博客。</p><p>后续文章会从这里开始更新。</p>]]>
+    </content>
+    <id>https://echochenvv.github.io/2026/06/11/new-blog-ready/</id>
+    <link href="https://echochenvv.github.io/2026/06/11/new-blog-ready/"/>
+    <published>2026-06-11T07:40:00.000Z</published>
+    <summary>
+      <![CDATA[<p>这里是 Echochenvv 的新博客。</p>
+<p>后续文章会从这里开始更新。</p>]]>
+    </summary>
+    <title>新博客已就绪</title>
+    <updated>2026-06-11T07:37:26.855Z</updated>
+  </entry>
+</feed>
