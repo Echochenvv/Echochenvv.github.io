@@ -1,0 +1,11 @@
+<section class="archive-page">
+  <h1>归档</h1>
+  <div class="archive-list">
+    <% site.posts.sort('date', -1).each(function(post){ %>
+      <a class="archive-item" href="<%- url_for(post.path) %>">
+        <span><%= post.title || '未命名文章' %></span>
+        <time><%= date(post.date, 'YYYY-MM-DD') %></time>
+      </a>
+    <% }) %>
+  </div>
+</section>

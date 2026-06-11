@@ -1,0 +1,17 @@
+<section class="post-list">
+  <% if (site.posts.length) { %>
+    <% page.posts.each(function(post){ %>
+      <article class="post-card">
+        <time datetime="<%= post.date.toISOString() %>"><%= date(post.date, 'YYYY-MM-DD') %></time>
+        <h2><a href="<%- url_for(post.path) %>"><%= post.title || '未命名文章' %></a></h2>
+        <div class="excerpt"><%- post.excerpt || strip_html(post.content).slice(0, 120) + '…' %></div>
+        <a class="read-more" href="<%- url_for(post.path) %>">阅读全文</a>
+      </article>
+    <% }) %>
+  <% } else { %>
+    <article class="empty-card">
+      <h2>新博客已就绪</h2>
+      <p>第一篇文章还在路上。后续内容会从这里开始更新。</p>
+    </article>
+  <% } %>
+</section>
