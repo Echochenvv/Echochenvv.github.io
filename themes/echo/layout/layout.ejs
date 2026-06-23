@@ -5,31 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><% if (page.title) { %><%= page.title %> · <% } %><%= config.title %></title>
   <meta name="description" content="<%= config.description || config.title %>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="<%- url_for('/css/echo.css') %>">
 </head>
-<body>
-  <div class="site-shell">
-    <header class="site-header">
-      <nav class="nav-bar">
-        <a class="brand" href="<%- url_for('/') %>"><span class="brand-mark">E</span><span><%= config.title %></span></a>
-        <div class="nav-links">
-          <a href="<%- url_for('/') %>">首页</a>
-          <a href="<%- url_for('/archives/') %>">归档</a>
+<body class="<% if (is_home()) { %>home-template<% } else { %>inner-template<% } %>">
+  <div class="mask mask-top" aria-hidden="true"></div>
+  <div class="mask mask-bottom" aria-hidden="true"></div>
+  <div class="mask mask-left" aria-hidden="true"></div>
+  <div class="mask mask-right" aria-hidden="true"></div>
+
+  <div class="mobile-red-header">
+    <a class="mobile-brand" href="<%- url_for('/') %>"><%= config.title %></a>
+    <button class="mobile-menu-btn" onclick="document.querySelector('.mobile-nav').classList.toggle('open')" aria-label="打开导航">☰</button>
+  </div>
+  <nav class="mobile-nav" aria-label="移动端导航">
+    <a href="<%- url_for('/') %>">首页</a>
+    <a href="<%- url_for('/archives/') %>">归档</a>
+    <a href="<%- url_for('/categories/文章/') %>">文章</a>
+    <a href="<%- url_for('/categories/摄影/') %>">摄影</a>
+    <a href="<%- url_for('/categories/乒乓球/') %>">乒乓球</a>
+  </nav>
+
+  <div class="page-shell">
+    <div class="notice ptn" role="note">
+      <strong>Now</strong>
+      <span><%= config.description || '把想法慢慢写下来。' %></span>
+      <span><%= date(new Date(), 'YYYY-MM-DD') %></span>
+    </div>
+
+    <% if (!is_home()) { %>
+      <header class="masthead masthead-compact">
+        <div>
+          <div class="brand-line">
+            <a class="logo" href="<%- url_for('/') %>"><%= config.title %></a>
+            <span class="tagline">Personal Journal</span>
+          </div>
+          <h1><%= page.title || config.title %></h1>
+          <p class="intro"><%= config.description || '一个安静、清爽、适合长期维护的个人博客。' %></p>
         </div>
-      </nav>
-      <section class="hero">
-        <p class="eyebrow">Personal Journal</p>
-        <h1>把想法慢慢写下来。</h1>
-        <p class="hero-copy"><%= config.description || '一个安静、清爽、适合长期维护的个人博客。' %></p>
-      </section>
-    </header>
-    <main class="content">
-      <%- body %>
-    </main>
-    <footer class="site-footer">
-      <span>© <%= new Date().getFullYear() %> <%= config.author || config.title %></span>
-      <span>Built with Hexo</span>
+        <nav class="nav-box" aria-label="主导航">
+          <div class="nav-title">Directory</div>
+          <div class="nav-list">
+            <a href="<%- url_for('/') %>"><span>首页</span><span>Home</span></a>
+            <a href="<%- url_for('/archives/') %>"<% if (is_archive()) { %> aria-current="page"<% } %>><span>归档</span><span>Archive</span></a>
+            <a href="<%- url_for('/categories/文章/') %>"><span>文章</span><span>Writing</span></a>
+            <a href="<%- url_for('/categories/摄影/') %>"><span>摄影</span><span>Photo</span></a>
+          </div>
+        </nav>
+      </header>
+    <% } %>
+
+    <%- body %>
+
+    <footer class="footer">
+      <span>© <%= new Date().getFullYear() %> <%= config.author || config.title %> · Built with <a href="https://hexo.io/" rel="noreferrer">Hexo</a></span>
+      <span>Back to life, one note at a time.</span>
     </footer>
   </div>
 </body>

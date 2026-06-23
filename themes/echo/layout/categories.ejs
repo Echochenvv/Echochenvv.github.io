@@ -1,0 +1,20 @@
+<section class="archive-page">
+  <h1><%= page.category || page.title || '分类' %></h1>
+  <div class="archive-list">
+    <% if (page.posts && page.posts.length) { %>
+      <% page.posts.each(function(post){ %>
+        <a class="archive-item" href="<%- url_for(post.path) %>">
+          <span><%= post.title || '未命名文章' %></span>
+          <time><%= date(post.date, 'YYYY-MM-DD') %></time>
+        </a>
+      <% }) %>
+    <% } else { %>
+      <% site.categories.sort('name').each(function(category){ %>
+        <a class="archive-item" href="<%- url_for(category.path) %>">
+          <span><%= category.name %></span>
+          <time><%= category.length %> 篇</time>
+        </a>
+      <% }) %>
+    <% } %>
+  </div>
+</section>

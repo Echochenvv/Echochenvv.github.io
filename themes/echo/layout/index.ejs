@@ -1,17 +1,119 @@
-<section class="post-list">
-  <% if (site.posts.length) { %>
-    <% page.posts.each(function(post){ %>
-      <article class="post-card">
-        <time datetime="<%= post.date.toISOString() %>"><%= date(post.date, 'YYYY-MM-DD') %></time>
-        <h2><a href="<%- url_for(post.path) %>"><%= post.title || '未命名文章' %></a></h2>
-        <div class="excerpt"><%- post.excerpt || strip_html(post.content).slice(0, 120) + '…' %></div>
-        <a class="read-more" href="<%- url_for(post.path) %>">阅读全文</a>
+<header class="masthead" data-screen-label="01 Home">
+  <div>
+    <div class="brand-line">
+      <a class="logo" href="<%- url_for('/') %>"><%= config.title %></a>
+      <span class="tagline">Personal Journal</span>
+    </div>
+    <h1>back to life</h1>
+    <p class="intro"><%= config.description || '把想法慢慢写下来。' %></p>
+  </div>
+
+  <nav class="nav-box" aria-label="主导航">
+    <div class="nav-title">Directory</div>
+    <div class="nav-list">
+      <a href="<%- url_for('/') %>" aria-current="page"><span>首页</span><span>Home</span></a>
+      <a href="<%- url_for('/archives/') %>"><span>归档</span><span>Archive</span></a>
+      <a href="<%- url_for('/categories/文章/') %>"><span>文章</span><span>Writing</span></a>
+      <a href="<%- url_for('/categories/摄影/') %>"><span>摄影</span><span>Photo</span></a>
+      <a href="<%- url_for('/categories/乒乓球/') %>"><span>乒乓球</span><span>Ping Pong</span></a>
+    </div>
+  </nav>
+</header>
+
+<div class="content-grid">
+  <main id="latest">
+    <div class="section-label">
+      <span>Latest Notes</span>
+      <span><%= site.posts.length %> item<%= site.posts.length === 1 ? '' : 's' %> / slowly updated</span>
+    </div>
+
+    <% if (page.posts && page.posts.length) { %>
+      <% var firstPost = page.posts.data ? page.posts.data[0] : page.posts.toArray()[0]; %>
+      <article class="feature-post">
+        <div class="post-no">
+          <b>№01</b>
+          <span><%= date(firstPost.date, 'YYYY-MM-DD') %></span>
+          <% if (firstPost.categories && firstPost.categories.length) { %>
+            <span class="tag"><%= firstPost.categories.data[0].name %></span>
+          <% } else { %>
+            <span class="tag">BLOG</span>
+          <% } %>
+        </div>
+        <div>
+          <h2 class="post-title"><a href="<%- url_for(firstPost.path) %>"><%= firstPost.title || '未命名文章' %></a></h2>
+          <p class="summary"><%- firstPost.excerpt || strip_html(firstPost.content).slice(0, 140) + '…' %></p>
+          <div class="meta-row">
+            <span>来源 / <%= config.title %></span>
+            <span>·</span>
+            <span>状态 / 已发布</span>
+            <span>·</span>
+            <span>入口 / Hexo</span>
+          </div>
+          <a class="read-more" href="<%- url_for(firstPost.path) %>">阅读全文 <span>→</span></a>
+        </div>
       </article>
-    <% }) %>
-  <% } else { %>
-    <article class="empty-card">
-      <h2>新博客已就绪</h2>
-      <p>第一篇文章还在路上。后续内容会从这里开始更新。</p>
-    </article>
-  <% } %>
-</section>
+
+      <section class="feed-list" aria-label="内容流预览">
+        <div class="section-label">
+          <span>Site Feed</span>
+          <span>like a tiny archive</span>
+        </div>
+        <% var index = 0; %>
+        <% page.posts.each(function(post){ %>
+          <% index += 1; %>
+          <% if (index > 1) { %>
+            <article class="feed-item has-ghost-number" data-number="<%= index %>">
+              <time class="feed-date" datetime="<%= post.date.toISOString() %>"><%= date(post.date, 'MM/DD') %></time>
+              <div>
+                <h3><a href="<%- url_for(post.path) %>"><%= post.title || '未命名文章' %></a></h3>
+                <p><%- post.excerpt || strip_html(post.content).slice(0, 90) + '…' %></p>
+              </div>
+            </article>
+          <% } %>
+        <% }) %>
+      </section>
+    <% } else { %>
+      <article class="empty-card pattern-panel">
+        <h2>新博客已就绪</h2>
+        <p>第一篇文章还在路上。后续内容会从这里开始更新。</p>
+      </article>
+    <% } %>
+  </main>
+
+  <aside class="rail" id="about" aria-label="侧栏信息">
+    <section class="panel">
+      <div class="panel-title"><span>About</span><span>!</span></div>
+      <div class="panel-body">
+        <p><%= config.description || 'Echochenvv 的个人博客。关键词先别太满：生活、想法、更新、慢慢写。' %></p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title"><span>Archive</span><span>№</span></div>
+      <div class="panel-body">
+        <ul class="mini-list">
+          <% var years = {}; site.posts.each(function(post){ years[date(post.date, 'YYYY')] = true; }); %>
+          <% Object.keys(years).sort().reverse().slice(0, 4).forEach(function(year){ %>
+            <li class="has-ghost-number" data-number="<%= year.slice(2) %>">
+              <b><%= year %></b><span>查看这一年的记录。</span>
+            </li>
+          <% }) %>
+          <% if (!Object.keys(years).length) { %>
+            <li><b>Archive</b><span>内容正在路上。</span></li>
+          <% } %>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel submit-box pattern-panel">
+      <div class="panel-title"><span>Subscribe</span><span>RSS</span></div>
+      <div class="panel-body">
+        <p>保留一个轻量订阅区，借鉴 anyway.fm 的工具侧栏感觉，但只放博客真正需要的入口。</p>
+        <div class="input-row">
+          <input value="echochenvv.github.io" aria-label="站点地址" readonly>
+          <a class="copy-button" href="<%- url_for('/atom.xml') %>">RSS</a>
+        </div>
+      </div>
+    </section>
+  </aside>
+</div>
