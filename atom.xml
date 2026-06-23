@@ -28,4 +28,150 @@
     <title>新博客已就绪</title>
     <updated>2026-06-11T07:37:26.855Z</updated>
   </entry>
+  <entry>
+    <author>
+      <name>Echochenvv</name>
+    </author>
+    <category term="文章" scheme="https://echochenvv.github.io/categories/%E6%96%87%E7%AB%A0/"/>
+    <category term="博客" scheme="https://echochenvv.github.io/tags/%E5%8D%9A%E5%AE%A2/"/>
+    <category term="Hexo" scheme="https://echochenvv.github.io/tags/Hexo/"/>
+    <category term="建站" scheme="https://echochenvv.github.io/tags/%E5%BB%BA%E7%AB%99/"/>
+    <content>
+      <![CDATA[<p>折腾了一圈，最终选了 Hexo + GitHub Pages 的方案。原因很简单：够轻、够快、够稳。</p><p>之前用过 WordPress，太重了。也试过 Next.js，对于一个纯文字博客来说有点杀鸡用牛刀。Hexo 的好处在于，你只需要关心 Markdown，剩下的交给模板和部署流程。</p><h2 id="为什么不用现成的平台"><a href="#为什么不用现成的平台" class="headerlink" title="为什么不用现成的平台"></a>为什么不用现成的平台</h2><p>掘金、知乎、Medium 都能写，但总觉得不够自由。自己的博客想放什么放什么，想怎么排版就怎么排版，不用考虑平台的推荐算法和审核机制。</p><h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><ul><li><strong>Hexo</strong>: 静态站点生成，写完 Markdown 直接构建</li><li><strong>GitHub Pages</strong>: 免费托管，自动部署</li><li><strong>自定义主题</strong>: 不用现成主题，自己写 CSS，掌控每一像素</li></ul><h2 id="接下来的计划"><a href="#接下来的计划" class="headerlink" title="接下来的计划"></a>接下来的计划</h2><p>慢慢写，不着急。先把框架搭好，内容后面慢慢补。</p>]]>
+    </content>
+    <id>https://echochenvv.github.io/2026/06/10/building-personal-blog/</id>
+    <link href="https://echochenvv.github.io/2026/06/10/building-personal-blog/"/>
+    <published>2026-06-10T06:30:00.000Z</published>
+    <summary>
+      <![CDATA[<p>折腾了一圈，最终选了 Hexo + GitHub Pages 的方案。原因很简单：够轻、够快、够稳。</p>
+<p>之前用过 WordPress，太重了。也试过 Next.js，对于一个纯文字博客来说有点杀鸡用牛刀。Hexo 的好处在于，你只需要关心 Markdown，剩下]]>
+    </summary>
+    <title>从零搭建个人博客的一些思考</title>
+    <updated>2026-06-11T13:39:42.238Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Echochenvv</name>
+    </author>
+    <category term="乒乓球" scheme="https://echochenvv.github.io/categories/%E4%B9%92%E4%B9%93%E7%90%83/"/>
+    <category term="技术" scheme="https://echochenvv.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
+    <category term="正手" scheme="https://echochenvv.github.io/tags/%E6%AD%A3%E6%89%8B/"/>
+    <category term="发力" scheme="https://echochenvv.github.io/tags/%E5%8F%91%E5%8A%9B/"/>
+    <content>
+      <![CDATA[<p>最近在纠正正手拉球的动作，发现以前很多发力习惯都是错的。</p><h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><p>很多人拉球只用手臂，忽略了腰胯的力量。结果就是：力气使了不少，球却没质量。</p><p>正确的发力顺序应该是：蹬腿 → 转腰 → 带动大臂 → 前臂加速 → 手腕微调。这是一个从下往上的力量传递链。</p><h2 id="练习方法"><a href="#练习方法" class="headerlink" title="练习方法"></a>练习方法</h2><ol><li><strong>徒手挥拍</strong>: 每天 50 次，重点感受腰胯的转动</li><li><strong>多球训练</strong>: 教练喂球，固定动作框架</li><li><strong>实战检验</strong>: 打比赛的时候刻意用新动作</li></ol><h2 id="一点感悟"><a href="#一点感悟" class="headerlink" title="一点感悟"></a>一点感悟</h2><p>乒乓球看似简单，但每个动作拆开来看都有讲究。以前觉得「会打」就行了，现在发现「打好」和「会打」之间差了十万八千里。</p><p>不过这也是乐趣所在——永远有提升空间。</p>]]>
+    </content>
+    <id>https://echochenvv.github.io/2026/06/09/forehand-loop-technique/</id>
+    <link href="https://echochenvv.github.io/2026/06/09/forehand-loop-technique/"/>
+    <published>2026-06-09T12:00:00.000Z</published>
+    <summary>
+      <![CDATA[<p>最近在纠正正手拉球的动作，发现以前很多发力习惯都是错的。</p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><p>很多人拉球只用手臂，忽略了腰胯的力量。结果就是：力气]]>
+    </summary>
+    <title>正手拉球的发力机制</title>
+    <updated>2026-06-11T13:40:07.564Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Echochenvv</name>
+    </author>
+    <category term="摄影" scheme="https://echochenvv.github.io/categories/%E6%91%84%E5%BD%B1/"/>
+    <category term="街拍" scheme="https://echochenvv.github.io/tags/%E8%A1%97%E6%8B%8D/"/>
+    <category term="光影" scheme="https://echochenvv.github.io/tags/%E5%85%89%E5%BD%B1/"/>
+    <category term="老城区" scheme="https://echochenvv.github.io/tags/%E8%80%81%E5%9F%8E%E5%8C%BA/"/>
+    <content>
+      <![CDATA[<p>周末天气好，背着相机去了趟老城区。没有什么明确的主题，就是随便走走拍拍。</p><h2 id="设备"><a href="#设备" class="headerlink" title="设备"></a>设备</h2><p>Sony A7C + 35mm f&#x2F;1.8。轻便，挂机扫街刚好。最近越来越觉得定焦的好处——逼自己用脚步代替变焦。</p><h2 id="几张比较满意的"><a href="#几张比较满意的" class="headerlink" title="几张比较满意的"></a>几张比较满意的</h2><p>下午三点多的光线最好，斜射进巷子里，明暗对比特别强烈。有一张是一个老人坐在门口晒太阳，背后是斑驳的墙面，光正好打在他侧脸上。</p><p>还有一张是猫。橘猫，蹲在墙头上，背后是灰色的瓦片屋顶。等了大概五分钟，它终于转头看了我一眼。</p><h2 id="拍照的心态"><a href="#拍照的心态" class="headerlink" title="拍照的心态"></a>拍照的心态</h2><p>以前总想拍大片，现在更享受过程。走在街上看光影变化，等一个合适的瞬间，按一下快门。拍到好照片是惊喜，拍不到也无所谓。</p><p>胶片感的后期调了调，压了高光提了阴影，加了点颗粒。不追求真实，追求氛围。</p>]]>
+    </content>
+    <id>https://echochenvv.github.io/2026/06/08/weekend-street-photography/</id>
+    <link href="https://echochenvv.github.io/2026/06/08/weekend-street-photography/"/>
+    <published>2026-06-08T10:00:00.000Z</published>
+    <summary>
+      <![CDATA[<p>周末天气好，背着相机去了趟老城区。没有什么明确的主题，就是随便走走拍拍。</p>
+<h2 id="设备"><a href="#设备" class="headerlink" title="设备"></a>设备</h2><p>Sony A7C + 35mm f&#x2F;1.8]]>
+    </summary>
+    <title>周末扫街手记：老城区的光影</title>
+    <updated>2026-06-11T13:39:57.738Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Echochenvv</name>
+    </author>
+    <category term="文章" scheme="https://echochenvv.github.io/categories/%E6%96%87%E7%AB%A0/"/>
+    <category term="工具" scheme="https://echochenvv.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    <category term="效率" scheme="https://echochenvv.github.io/tags/%E6%95%88%E7%8E%87/"/>
+    <content>
+      <![CDATA[<p>工作几年，慢慢攒出了一套自己顺手的工具链。不一定是最优解，但适合我的节奏。</p><h2 id="代码编辑"><a href="#代码编辑" class="headerlink" title="代码编辑"></a>代码编辑</h2><p>VS Code 没什么好说的，插件生态太强了。几个必装的：GitLens、Error Lens、Pretty TypeScript Errors。</p><h2 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h2><p>用的 Warp，主要是颜值高，AI 补全也还行。之前用过 Alacritty + zsh，配置烦了就换回来了。</p><h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><p>Obsidian，双链笔记的思路一旦习惯就回不去了。目前里面存了大概 500+ 条笔记，按项目和主题分了十几个文件夹。</p><h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><p>Figma 做原型，Excalidraw 画草图。有时候也会直接在 CodePen 里写 CSS 玩。</p><h2 id="一个原则"><a href="#一个原则" class="headerlink" title="一个原则"></a>一个原则</h2><p>工具够用就行，不要陷入「寻找完美工具」的陷阱。把时间花在产出上，不是配置上。</p>]]>
+    </content>
+    <id>https://echochenvv.github.io/2026/06/05/my-productivity-tools/</id>
+    <link href="https://echochenvv.github.io/2026/06/05/my-productivity-tools/"/>
+    <published>2026-06-05T02:00:00.000Z</published>
+    <summary>
+      <![CDATA[<p>工作几年，慢慢攒出了一套自己顺手的工具链。不一定是最优解，但适合我的节奏。</p>
+<h2 id="代码编辑"><a href="#代码编辑" class="headerlink" title="代码编辑"></a>代码编辑</h2><p>VS Code 没什么好说的，插件]]>
+    </summary>
+    <title>聊聊我在用的效率工具</title>
+    <updated>2026-06-11T13:39:50.818Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Echochenvv</name>
+    </author>
+    <category term="乒乓球" scheme="https://echochenvv.github.io/categories/%E4%B9%92%E4%B9%93%E7%90%83/"/>
+    <category term="装备" scheme="https://echochenvv.github.io/tags/%E8%A3%85%E5%A4%87/"/>
+    <category term="底板" scheme="https://echochenvv.github.io/tags/%E5%BA%95%E6%9D%BF/"/>
+    <category term="胶皮" scheme="https://echochenvv.github.io/tags/%E8%83%B6%E7%9A%AE/"/>
+    <content>
+      <![CDATA[<p>打了几年球，器材也换了不少。记录一下目前的配置和选择思路，给同样在纠结的球友参考。</p><h2 id="底板"><a href="#底板" class="headerlink" title="底板"></a>底板</h2><p>目前用的是蝴蝶张继科 ALC。纯木手感好但出球速度不够，碳素板又太弹不好控制。ALC 这种纤维板算是折中选择，吃球感有，速度也够。</p><h2 id="胶皮"><a href="#胶皮" class="headerlink" title="胶皮"></a>胶皮</h2><ul><li><strong>正手</strong>: 红双喜狂飙 3，省队版。粘性大，旋转强，拉下旋特别舒服</li><li><strong>反手</strong>: 蝴蝶 Tenergy 05。弹性好，速度快，适合反手弹击和快撕</li></ul><h2 id="选择原则"><a href="#选择原则" class="headerlink" title="选择原则"></a>选择原则</h2><ol><li>不要盲目追顶配，适合自己的水平最重要</li><li>业余选手别用太硬的底板，控制比力量更关键</li><li>胶皮是消耗品，别心疼换胶皮的钱</li></ol><h2 id="一个教训"><a href="#一个教训" class="headerlink" title="一个教训"></a>一个教训</h2><p>之前试过一张很贵的胶皮，结果技术不到位根本打不出效果。后来换回便宜的，反而打得更舒服。器材是辅助，技术才是核心。</p>]]>
+    </content>
+    <id>https://echochenvv.github.io/2026/05/30/pingpong-equipment-guide/</id>
+    <link href="https://echochenvv.github.io/2026/05/30/pingpong-equipment-guide/"/>
+    <published>2026-05-30T07:00:00.000Z</published>
+    <summary>
+      <![CDATA[<p>打了几年球，器材也换了不少。记录一下目前的配置和选择思路，给同样在纠结的球友参考。</p>
+<h2 id="底板"><a href="#底板" class="headerlink" title="底板"></a>底板</h2><p>目前用的是蝴蝶张继科 ALC。纯木手感好但]]>
+    </summary>
+    <title>业余球友的装备选择</title>
+    <updated>2026-06-11T13:40:16.769Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Echochenvv</name>
+    </author>
+    <category term="摄影" scheme="https://echochenvv.github.io/categories/%E6%91%84%E5%BD%B1/"/>
+    <category term="公园" scheme="https://echochenvv.github.io/tags/%E5%85%AC%E5%9B%AD/"/>
+    <category term="绿植" scheme="https://echochenvv.github.io/tags/%E7%BB%BF%E6%A4%8D/"/>
+    <category term="城市" scheme="https://echochenvv.github.io/tags/%E5%9F%8E%E5%B8%82/"/>
+    <content>
+      <![CDATA[<p>发现了一个有意思的事情：每个城市都有那种藏在居民区里的小公园，不大，但特别有生活气息。</p><h2 id="不是景点，是日常"><a href="#不是景点，是日常" class="headerlink" title="不是景点，是日常"></a>不是景点，是日常</h2><p>这些公园没有门票，没有网红打卡点，甚至地图上都不一定标得到。但一到傍晚，练太极的、遛狗的、带孩子的，人特别多。</p><p>我特别喜欢拍这种地方。因为这里的人是放松的，状态是真实的。不像景点，每个人都在摆姿势。</p><h2 id="拍摄笔记"><a href="#拍摄笔记" class="headerlink" title="拍摄笔记"></a>拍摄笔记</h2><p>用的是长焦，85mm f&#x2F;1.4。压缩感很强，背景虚化好看。光圈全开的时候，前景的叶子变成了一团绿色的光斑。</p><p>有一组照片是拍公园里的棋盘。石桌上刻着棋盘线，两个大爷在下象棋。我蹲在旁边拍了好几张，他们完全没注意到我。</p><h2 id="后期思路"><a href="#后期思路" class="headerlink" title="后期思路"></a>后期思路</h2><p>整体偏暖色调，绿色保留但不过饱和。降了对比度，让画面更柔和。想营造一种午后慵懒的感觉。</p>]]>
+    </content>
+    <id>https://echochenvv.github.io/2026/05/28/city-parks-photography/</id>
+    <link href="https://echochenvv.github.io/2026/05/28/city-parks-photography/"/>
+    <published>2026-05-28T01:00:00.000Z</published>
+    <summary>
+      <![CDATA[<p>发现了一个有意思的事情：每个城市都有那种藏在居民区里的小公园，不大，但特别有生活气息。</p>
+<h2 id="不是景点，是日常"><a href="#不是景点，是日常" class="headerlink" title="不是景点，是日常"></a>不是景点，是日常</h]]>
+    </summary>
+    <title>城市里的那些小公园</title>
+    <updated>2026-06-11T13:40:02.902Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Echochenvv</name>
+    </author>
+    <category term="乒乓球" scheme="https://echochenvv.github.io/categories/%E4%B9%92%E4%B9%93%E7%90%83/"/>
+    <category term="比赛" scheme="https://echochenvv.github.io/tags/%E6%AF%94%E8%B5%9B/"/>
+    <category term="业余" scheme="https://echochenvv.github.io/tags/%E4%B8%9A%E4%BD%99/"/>
+    <category term="心态" scheme="https://echochenvv.github.io/tags/%E5%BF%83%E6%80%81/"/>
+    <content>
+      <![CDATA[<p>上周参加了公司组织的乒乓球赛，打到了四强，算是超预期了。</p><h2 id="赛前"><a href="#赛前" class="headerlink" title="赛前"></a>赛前</h2><p>说实话没怎么准备。平时也就周末打两小时，水平算中等偏上。参赛主要是想检验一下最近练的新动作。</p><h2 id="比赛过程"><a href="#比赛过程" class="headerlink" title="比赛过程"></a>比赛过程</h2><p>小组赛比较轻松，两胜一负出线。淘汰赛第一场碰到了一个专业队退下来的，第一局被打了 3:11。第二局开始调整策略，不跟他拼质量，打落点变化和节奏变化，居然连扳三局逆转了。</p><p>半决赛输了，对手太稳，我没有太多机会。</p><h2 id="复盘"><a href="#复盘" class="headerlink" title="复盘"></a>复盘</h2><ol><li><strong>心态很重要</strong>: 第一局被打懵了，但稳住之后反而能打出自己的球</li><li><strong>赛前热身不能省</strong>: 几个球友没热身就上场，结果拉伤了</li><li><strong>享受比赛</strong>: 业余比赛，输赢没那么重要，过程开心就好</li></ol><h2 id="下次目标"><a href="#下次目标" class="headerlink" title="下次目标"></a>下次目标</h2><p>争取打进决赛。先把正手稳定性提上来。</p>]]>
+    </content>
+    <id>https://echochenvv.github.io/2026/05/20/amateur-competition-recap/</id>
+    <link href="https://echochenvv.github.io/2026/05/20/amateur-competition-recap/"/>
+    <published>2026-05-20T13:00:00.000Z</published>
+    <summary>
+      <![CDATA[<p>上周参加了公司组织的乒乓球赛，打到了四强，算是超预期了。</p>
+<h2 id="赛前"><a href="#赛前" class="headerlink" title="赛前"></a>赛前</h2><p>说实话没怎么准备。平时也就周末打两小时，水平算中等偏上。参赛主要是想]]>
+    </summary>
+    <title>记一次业余比赛</title>
+    <updated>2026-06-11T13:40:27.109Z</updated>
+  </entry>
 </feed>
