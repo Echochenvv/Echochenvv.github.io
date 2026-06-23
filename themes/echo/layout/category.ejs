@@ -1,0 +1,16 @@
+<section class="archive-page">
+  <h1><%= page.category || '分类' %></h1>
+  <div class="archive-list">
+    <% if (page.category) { %>
+      <% var catPosts = site.categories.findOne({name: page.category}); %>
+      <% if (catPosts && catPosts.posts.length) { %>
+        <% catPosts.posts.sort('date', -1).each(function(post){ %>
+          <a class="archive-item" href="<%- url_for(post.path) %>">
+            <span><%= post.title || '未命名文章' %></span>
+            <time><%= date(post.date, 'YYYY-MM-DD') %></time>
+          </a>
+        <% }) %>
+      <% } %>
+    <% } %>
+  </div>
+</section>
