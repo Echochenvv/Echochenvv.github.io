@@ -24,55 +24,34 @@
 <div class="content-grid">
   <main id="latest">
     <div class="section-label">
-      <span>Latest Notes</span>
-      <span><%= site.posts.length %> item<%= site.posts.length === 1 ? '' : 's' %> / slowly updated</span>
+      <span>All Modules</span>
+      <span><%= site.posts.length %> 篇文章</span>
     </div>
 
-    <% if (page.posts && page.posts.length) { %>
-      <% var firstPost = page.posts.data ? page.posts.data[0] : page.posts.toArray()[0]; %>
-      <article class="feature-post">
-        <div class="post-no">
-          <b>№01</b>
-          <span><%= date(firstPost.date, 'YYYY-MM-DD') %></span>
-          <% if (firstPost.categories && firstPost.categories.length) { %>
-            <span class="tag"><%= firstPost.categories.data[0].name %></span>
-          <% } else { %>
-            <span class="tag">BLOG</span>
-          <% } %>
-        </div>
-        <div>
-          <h2 class="post-title"><a href="<%- url_for(firstPost.path) %>"><%= firstPost.title || '未命名文章' %></a></h2>
-          <p class="summary"><%- firstPost.excerpt || strip_html(firstPost.content).slice(0, 140) + '…' %></p>
-          <div class="meta-row">
-            <span>来源 / <%= config.title %></span>
-            <span>·</span>
-            <span>状态 / 已发布</span>
-            <span>·</span>
-            <span>入口 / Hexo</span>
-          </div>
-          <a class="read-more" href="<%- url_for(firstPost.path) %>">阅读全文 <span>→</span></a>
-        </div>
-      </article>
-
-      <section class="feed-list" aria-label="内容流预览">
-        <div class="section-label">
-          <span>Site Feed</span>
-          <span>like a tiny archive</span>
-        </div>
-        <% var index = 0; %>
-        <% page.posts.each(function(post){ %>
-          <% index += 1; %>
-          <% if (index > 1) { %>
-            <article class="feed-item has-ghost-number" data-number="<%= index %>">
-              <time class="feed-date" datetime="<%= post.date.toISOString() %>"><%= date(post.date, 'MM/DD') %></time>
-              <div>
-                <h3><a href="<%- url_for(post.path) %>"><%= post.title || '未命名文章' %></a></h3>
-                <p><%- post.excerpt || strip_html(post.content).slice(0, 90) + '…' %></p>
-              </div>
-            </article>
-          <% } %>
-        <% }) %>
-      </section>
+    <% if (site.posts.length) { %>
+      <% var catOrder = ['人工智能', '文章', '摄影', '乒乓球']; %>
+      <% var globalIndex = 0; %>
+      <% catOrder.forEach(function(catName) { %>
+        <% var cat = site.categories.findOne({name: catName}); %>
+        <% if (cat && cat.posts.length) { %>
+          <section class="category-module">
+            <div class="section-label cat-header">
+              <a href="<%- url_for(cat.path) %>"><span><%= catName %></span></a>
+              <span><%= cat.posts.length %> 篇 · <a href="<%- url_for(cat.path) %>">全部 →</a></span>
+            </div>
+            <% cat.posts.sort('date', -1).each(function(post){ %>
+              <% globalIndex += 1; %>
+              <article class="feed-item" data-number="<%= globalIndex %>">
+                <time class="feed-date" datetime="<%= post.date.toISOString() %>"><%= date(post.date, 'MM/DD') %></time>
+                <div>
+                  <h3><a href="<%- url_for(post.path) %>"><%= post.title || '未命名文章' %></a></h3>
+                  <p><%- post.excerpt || strip_html(post.content).slice(0, 90) + '…' %></p>
+                </div>
+              </article>
+            <% }) %>
+          </section>
+        <% } %>
+      <% }) %>
     <% } else { %>
       <article class="empty-card pattern-panel">
         <h2>新博客已就绪</h2>
