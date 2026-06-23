@@ -2,7 +2,7 @@
 title: 为什么 AI 任务跑在你的机器上
 date: 2026-06-23 13:00:00
 categories:
-  - AI
+  - 人工智能
 tags:
   - Multica
   - 安全

@@ -2,7 +2,7 @@
 title: 四种让 AI 开始工作的方式
 date: 2026-06-23 12:00:00
 categories:
-  - AI
+  - 人工智能
 tags:
   - Multica
   - 工作流

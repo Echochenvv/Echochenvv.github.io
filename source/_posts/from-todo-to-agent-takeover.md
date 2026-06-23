@@ -2,7 +2,7 @@
 title: 从待办列表到 AI 接手任务
 date: 2026-06-23 09:00:00
 categories:
-  - AI
+  - 人工智能
 tags:
   - Multica
   - Agent

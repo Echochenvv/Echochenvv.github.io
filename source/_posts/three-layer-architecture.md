@@ -2,7 +2,7 @@
 title: 一个任务背后的三层分工
 date: 2026-06-23 10:00:00
 categories:
-  - AI
+  - 人工智能
 tags:
   - Multica
   - 架构

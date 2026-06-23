@@ -2,7 +2,7 @@
 title: Runtime：一台机器上的执行能力
 date: 2026-06-23 14:00:00
 categories:
-  - AI
+  - 人工智能
 tags:
   - Multica
   - Runtime

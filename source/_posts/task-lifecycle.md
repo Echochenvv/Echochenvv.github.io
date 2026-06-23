@@ -2,7 +2,7 @@
 title: 从分配 issue 到看到结果——一次任务的完整旅程
 date: 2026-06-23 11:00:00
 categories:
-  - AI
+  - 人工智能
 tags:
   - Multica
   - 任务编排
