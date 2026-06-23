@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>一个任务背后的三层分工 · Echochenvv</title>
+  <meta name="description" content="Echochenvv 的个人博客">
+  <link rel="stylesheet" href="/css/echo.css">
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="Echochenvv" type="application/atom+xml">
+</head>
+<body class="inner-template">
+  <div class="mask mask-top" aria-hidden="true"></div>
+  <div class="mask mask-bottom" aria-hidden="true"></div>
+  <div class="mask mask-left" aria-hidden="true"></div>
+  <div class="mask mask-right" aria-hidden="true"></div>
+
+  <div class="mobile-red-header">
+    <a class="mobile-brand" href="/">Echochenvv</a>
+    <button class="mobile-menu-btn" onclick="document.querySelector('.mobile-nav').classList.toggle('open')" aria-label="打开导航">☰</button>
+  </div>
+  <nav class="mobile-nav" aria-label="移动端导航">
+    <a href="/">首页</a>
+    <a href="/archives/">归档</a>
+    <a href="/categories/%E6%96%87%E7%AB%A0/">文章</a>
+    <a href="/categories/%E6%91%84%E5%BD%B1/">摄影</a>
+    <a href="/categories/%E4%B9%92%E4%B9%93%E7%90%83/">乒乓球</a>
+    <a href="/categories/AI/">AI</a>
+  </nav>
+
+  <div class="page-shell">
+    <div class="notice ptn" role="note">
+      <strong>Now</strong>
+      <span>Echochenvv 的个人博客</span>
+      <span>2026-06-23</span>
+    </div>
+
+    
+      <header class="masthead masthead-compact">
+        <div>
+          <div class="brand-line">
+            <a class="logo" href="/">Echochenvv</a>
+            <span class="tagline">Personal Journal</span>
+          </div>
+          <h1>一个任务背后的三层分工</h1>
+          <p class="intro">Echochenvv 的个人博客</p>
+        </div>
+        <nav class="nav-box" aria-label="主导航">
+          <div class="nav-title">Directory</div>
+          <div class="nav-list">
+            <a href="/"><span>首页</span><span>Home</span></a>
+            <a href="/archives/"><span>归档</span><span>Archive</span></a>
+            <a href="/categories/%E6%96%87%E7%AB%A0/"><span>文章</span><span>Writing</span></a>
+            <a href="/categories/%E6%91%84%E5%BD%B1/"><span>摄影</span><span>Photo</span></a>
+            <a href="/categories/AI/"><span>AI</span><span>AI</span></a>
+          </div>
+        </nav>
+      </header>
+    
+
+    <article class="article-page">
+  <header class="article-header">
+    <p class="eyebrow">2026-06-23</p>
+    <h1>一个任务背后的三层分工</h1>
+  </header>
+  <div class="article-body">
+    <p>上一篇文章说 Multica 是一个 AI Agent Workspace，issue 分配出去后 AI 就开始干活。但你可能会问：<strong>这件事到底是怎么发生的？</strong> 点一下”分配”按钮，代码怎么就开始在本地跑起来了？</p>
+<p>答案藏在三层分工里。这三层不是抽象的架构图，而是你能在操作中感知到的三个角色：<strong>Server、Daemon、AI 编程工具</strong>。</p>
+<p>第一层是 <strong>Multica Server</strong>。它跑在云端，负责所有”协作面”的事情——保存 workspace 的数据（issue、成员、评论、任务队列），管理权限，通过 WebSocket 把状态变化实时推送到前端。当你把 issue 分配给一个智能体时，Server 做的事是：更新 assignee、创建一个类型为 <code>agent_task</code> 的任务放进队列，状态标记为 <code>queued</code>。到此为止，Server 不动你的代码，不知道你的文件在哪，也没有调用任何 AI 模型。</p>
+<p>第二层是 <strong>Daemon（守护进程）</strong>。这是 Multica CLI 的一部分，跑在你自己的机器上。它的工作是在后台持续运行：每隔几秒轮询 Server 看看有没有新任务；探测本机安装了哪些 AI 编程工具（Claude Code、Codex、Cursor、Gemini 等）；把自己的存在和心跳上报给 Server。当 daemon 发现队列里有一个分配给自己的任务，它会领取（状态变为 <code>dispatched</code>），创建一个隔离的工作目录，然后——这也是关键的一步——调用你已经安装好的 AI 编程工具。</p>
+<p>第三层是 <strong>AI 编程工具</strong>。Claude Code、Codex、Cursor 这些——它们不跟 Multica Server 直接通信，不知道有 Web 端、issue、评论这些东西。它们只知道被 daemon 叫起来：”这里有份活，仓库在这，issue 内容在这，开始干活”。工具读取仓库代码，根据 issue 描述执行任务（改代码、跑测试、生成文件），完成后把结果写回工作目录。daemon 再把结果回传给 Server。</p>
+<p>这三层的分工有一个你作为用户能直接感受到的好处：<strong>每层的职责边界非常清晰，出问题时排障路径很短。</strong></p>
+<ul>
+<li>前端看不到评论更新 → 查 Server 和 WebSocket</li>
+<li>任务一直是 queued → 查 daemon 是否在线</li>
+<li>任务 dispatched 但没结果 → 查 AI 工具是否可用、API key 是否配置</li>
+</ul>
+<p>这种”网页负责协作，本机负责执行”的模式不是技术上的炫技。它是一种务实的架构选择：把需要实时交互和数据持久化的部分放云端，把需要文件系统访问、代码理解和工具调用能力的部分放本地。两者通过任务队列解耦——Server 不需要知道你的机器上装着什么工具，daemon 不需要知道你网页上怎么显示评论。</p>
+<p>如果你同时在用多个 AI 编程工具，daemon 会探测到它们全部，并在任务到来时选择一个合适的来执行。这个选择逻辑在”Runtime”那篇文章里会详细讲。</p>
+<p>到目前为止，你可以这样记住：Server 是调度中心，daemon 是本地工头，AI 工具是具体干活的工匠。缺任何一层，任务都跑不起来。</p>
+
+  </div>
+</article>
+
+
+    <footer class="footer">
+      <span>© 2026 Echochenvv · Built with <a target="_blank" href="https://hexo.io/" rel="noreferrer noopener">Hexo</a></span>
+      <span>Back to life, one note at a time.</span>
+    </footer>
+  </div>
+</body>
+</html>

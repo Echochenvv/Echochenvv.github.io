@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>四种让 AI 开始工作的方式 · Echochenvv</title>
+  <meta name="description" content="Echochenvv 的个人博客">
+  <link rel="stylesheet" href="/css/echo.css">
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="Echochenvv" type="application/atom+xml">
+</head>
+<body class="inner-template">
+  <div class="mask mask-top" aria-hidden="true"></div>
+  <div class="mask mask-bottom" aria-hidden="true"></div>
+  <div class="mask mask-left" aria-hidden="true"></div>
+  <div class="mask mask-right" aria-hidden="true"></div>
+
+  <div class="mobile-red-header">
+    <a class="mobile-brand" href="/">Echochenvv</a>
+    <button class="mobile-menu-btn" onclick="document.querySelector('.mobile-nav').classList.toggle('open')" aria-label="打开导航">☰</button>
+  </div>
+  <nav class="mobile-nav" aria-label="移动端导航">
+    <a href="/">首页</a>
+    <a href="/archives/">归档</a>
+    <a href="/categories/%E6%96%87%E7%AB%A0/">文章</a>
+    <a href="/categories/%E6%91%84%E5%BD%B1/">摄影</a>
+    <a href="/categories/%E4%B9%92%E4%B9%93%E7%90%83/">乒乓球</a>
+    <a href="/categories/AI/">AI</a>
+  </nav>
+
+  <div class="page-shell">
+    <div class="notice ptn" role="note">
+      <strong>Now</strong>
+      <span>Echochenvv 的个人博客</span>
+      <span>2026-06-23</span>
+    </div>
+
+    
+      <header class="masthead masthead-compact">
+        <div>
+          <div class="brand-line">
+            <a class="logo" href="/">Echochenvv</a>
+            <span class="tagline">Personal Journal</span>
+          </div>
+          <h1>四种让 AI 开始工作的方式</h1>
+          <p class="intro">Echochenvv 的个人博客</p>
+        </div>
+        <nav class="nav-box" aria-label="主导航">
+          <div class="nav-title">Directory</div>
+          <div class="nav-list">
+            <a href="/"><span>首页</span><span>Home</span></a>
+            <a href="/archives/"><span>归档</span><span>Archive</span></a>
+            <a href="/categories/%E6%96%87%E7%AB%A0/"><span>文章</span><span>Writing</span></a>
+            <a href="/categories/%E6%91%84%E5%BD%B1/"><span>摄影</span><span>Photo</span></a>
+            <a href="/categories/AI/"><span>AI</span><span>AI</span></a>
+          </div>
+        </nav>
+      </header>
+    
+
+    <article class="article-page">
+  <header class="article-header">
+    <p class="eyebrow">2026-06-23</p>
+    <h1>四种让 AI 开始工作的方式</h1>
+  </header>
+  <div class="article-body">
+    <p>如果你只用过一种方式调用 AI——比如在 terminal 里敲 <code>claude</code>，或者在网页上跟 ChatGPT 对话——Multica 的四种触发方式可能会让你觉得有点多。但一旦理解每种方式对应的场景，你会发现它们不是在堆功能，而是在把”让 AI 接手”这个动作嵌入到已有的协作习惯里。</p>
+<p><strong>第一种：分配 issue。</strong> 这是最正式的方式。你创建一个 issue，写好需求，用 <code>multica issue assign</code> 或者 Web 界面分配给一个 agent。agent 会完整跟踪这个任务——从入队到完成，所有中间状态和输出都留在 issue 的时间线里。适合：有明确交付边界的任务、需要审计追踪的工作、多人协作的复杂需求。</p>
+<p><strong>第二种：在评论里 @agent。</strong> 你在一个已有的 issue 讨论中，突然想对 agent 说”你帮我看一下这段”。不需要创建新 issue，直接在评论里写 <code>[@agent名](mention://agent/&lt;id&gt;)</code>，平台会把这条评论当作一个新任务来触发。agent 能看到整个讨论上下文，于是在对话流中直接插入结果。适合：临时的代码审查请求、clarification 追问、在已有讨论中快速插入一个 AI 执行步骤。</p>
+<p><strong>第三种：直接聊天。</strong> Multica 提供了 agent 聊天界面，你可以像跟同事聊天一样直接对 agent 说话。没有 issue 的仪式感，没有状态流转——就是发消息、得回复。适合：草拟还没成型的想法、快速问答、”帮我查一下这个 API 的文档”这类无需正式追踪的请求。聊完之后如果觉得有价值，可以随时把聊天内容转化为一个正式 issue。</p>
+<p><strong>第四种：Autopilots。</strong> 这是定时或事件触发的自动化。你可以配置一个 autopilot，让它每天早上 9 点自动跑一次代码质量检查，或者每当有新的 issue 被标记为 <code>bug</code> 时自动触发一个诊断 agent。Autopilot 的本质是把”人主动分配”这个动作变成了”按规则自动触发”。适合：周报生成、每日巡检、内容沉淀等周期性任务。</p>
+<p>这四种方式对应了四种不同的”触发力度的颗粒度”。正式任务用 issue，临时插话用评论 @，轻量探索用聊天，规律性的固定任务用 autopilot。</p>
+<p>你可能会问：什么时候用哪种？一个简单的决策框架：</p>
+<ul>
+<li>这件事需要<strong>被追踪和回溯</strong>吗？→ 用 issue。</li>
+<li>这件事是<strong>在已有讨论中冒出来的</strong>吗？→ 用评论 @。</li>
+<li>这件事还在<strong>模糊探索阶段</strong>吗？→ 用聊天。</li>
+<li>这件事<strong>周期性重复</strong>且不需要每次都手动触发吗？→ 用 autopilot。</li>
+</ul>
+<p>在实践中，我们发现最有价值的组合是：聊天探索 → 转成 issue 正式执行 → 执行过程中评论 @ 追加细节 → 成熟的固定模式沉淀为 autopilot。这是一个从模糊到精确、从一次性到自动化的自然演化路径。</p>
+<p>不必一上来就全部掌握。从”分配 issue”开始——这是 Multica 最核心的交互模式，其他三种都是它的变体和补充。</p>
+
+  </div>
+</article>
+
+
+    <footer class="footer">
+      <span>© 2026 Echochenvv · Built with <a target="_blank" href="https://hexo.io/" rel="noreferrer noopener">Hexo</a></span>
+      <span>Back to life, one note at a time.</span>
+    </footer>
+  </div>
+</body>
+</html>

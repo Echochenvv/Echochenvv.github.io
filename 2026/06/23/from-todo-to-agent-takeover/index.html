@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>从待办列表到 AI 接手任务 · Echochenvv</title>
+  <meta name="description" content="Echochenvv 的个人博客">
+  <link rel="stylesheet" href="/css/echo.css">
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="Echochenvv" type="application/atom+xml">
+</head>
+<body class="inner-template">
+  <div class="mask mask-top" aria-hidden="true"></div>
+  <div class="mask mask-bottom" aria-hidden="true"></div>
+  <div class="mask mask-left" aria-hidden="true"></div>
+  <div class="mask mask-right" aria-hidden="true"></div>
+
+  <div class="mobile-red-header">
+    <a class="mobile-brand" href="/">Echochenvv</a>
+    <button class="mobile-menu-btn" onclick="document.querySelector('.mobile-nav').classList.toggle('open')" aria-label="打开导航">☰</button>
+  </div>
+  <nav class="mobile-nav" aria-label="移动端导航">
+    <a href="/">首页</a>
+    <a href="/archives/">归档</a>
+    <a href="/categories/%E6%96%87%E7%AB%A0/">文章</a>
+    <a href="/categories/%E6%91%84%E5%BD%B1/">摄影</a>
+    <a href="/categories/%E4%B9%92%E4%B9%93%E7%90%83/">乒乓球</a>
+    <a href="/categories/AI/">AI</a>
+  </nav>
+
+  <div class="page-shell">
+    <div class="notice ptn" role="note">
+      <strong>Now</strong>
+      <span>Echochenvv 的个人博客</span>
+      <span>2026-06-23</span>
+    </div>
+
+    
+      <header class="masthead masthead-compact">
+        <div>
+          <div class="brand-line">
+            <a class="logo" href="/">Echochenvv</a>
+            <span class="tagline">Personal Journal</span>
+          </div>
+          <h1>从待办列表到 AI 接手任务</h1>
+          <p class="intro">Echochenvv 的个人博客</p>
+        </div>
+        <nav class="nav-box" aria-label="主导航">
+          <div class="nav-title">Directory</div>
+          <div class="nav-list">
+            <a href="/"><span>首页</span><span>Home</span></a>
+            <a href="/archives/"><span>归档</span><span>Archive</span></a>
+            <a href="/categories/%E6%96%87%E7%AB%A0/"><span>文章</span><span>Writing</span></a>
+            <a href="/categories/%E6%91%84%E5%BD%B1/"><span>摄影</span><span>Photo</span></a>
+            <a href="/categories/AI/"><span>AI</span><span>AI</span></a>
+          </div>
+        </nav>
+      </header>
+    
+
+    <article class="article-page">
+  <header class="article-header">
+    <p class="eyebrow">2026-06-23</p>
+    <h1>从待办列表到 AI 接手任务</h1>
+  </header>
+  <div class="article-body">
+    <p>几年前我们团队从 Jira 迁到 Linear 的时候，觉得项目管理已经进化到头了——更快的 UI、更轻的交互、更好的快捷键。但有一个问题从来没有被解决：<strong>issue 创建之后，还是得有人去看、去理解、去动手。</strong></p>
+<p>Multica 做的事情，就是在这一环上换了答案。</p>
+<p>你在 Multica 的 Web 界面上创建一个 issue，写好需求和上下文，然后把它分配给一个智能体。三秒之后，你本地机器上的 daemon 领取了这个任务，Claude Code（或者 Codex、Cursor——取决于你配置了哪个工具）开始在新的工作目录里读代码、改文件、跑测试。你没有再打开 IDE，没有再切 terminal，没有再手动 git clone。<strong>任务已经从”待办项”变成了”正在进行中的 AI run”。</strong></p>
+<p>这就是 Multica 和传统项目管理工具最根本的区别。Linear 和 Jira 的终点是一个被分配出去的 issue；Multica 的终点是一个<strong>已经被 AI 接手的任务</strong>。</p>
+<p>这种转变在体感上是质变的。传统链路里，你写一个 issue → 等同事看到 → 同事理解需求 → 同事动手。每一步都有延迟、都有沟通成本。而 Multica 的链路是：你写一个 issue → 分配 → daemon 领取 → AI 工具开始执行。中间没有人类上下文切换的开销。</p>
+<p>这不是说 AI 能替代所有人工步骤——复杂决策、架构评审、代码 review 仍然需要人。但”把任务从纸面落到执行”这一步，AI 可以零延迟接手。你写完 issue 的瞬间，工作已经开始了。</p>
+<p>有一个细节值得注意：在 Multica 里，issue 不只是一个文字描述，它包含了<strong>可执行上下文</strong>——可以附带代码仓库链接、branch 引用、甚至具体的文件路径。这让 AI 不需要”理解”你的意图然后再去找代码，而是直接被投送到执行环境中。这种设计意味着，用户需要把 issue 写成<strong>交付规格</strong>而不是备忘录。”帮忙看看那个 bug”不如”修复 checkout 页面在 Safari 下金额显示为 NaN 的问题，相关文件在 <code>src/pages/checkout.tsx</code>“。</p>
+<p>从心智模型上说，Multica 不是”有 AI 功能的项目管理工具”，而是 <strong>AI Agent Workspace</strong>——一个让人类和 AI agent 在同一空间里协作的工作台。issue 是协作的入口，不是追踪的终点。</p>
+<p>如果你刚开始用 Multica，一个简单建议：下次创建 issue 时，假设读到它的人只有 30 秒就要开始动手写代码。写得越具体，AI 第一次交付的质量就越高。</p>
+<p>这并不是说传统 issue tracker 没用了——它们适合管理人类团队的工作流。但如果你已经在用 AI 编程工具写代码，Multica 让这些工具从”你打开 terminal 手动调用的助手”变成了”在后台等待任务分发的 worker”。这个转变不大，但刚好够改变你安排一天工作的方式。</p>
+
+  </div>
+</article>
+
+
+    <footer class="footer">
+      <span>© 2026 Echochenvv · Built with <a target="_blank" href="https://hexo.io/" rel="noreferrer noopener">Hexo</a></span>
+      <span>Back to life, one note at a time.</span>
+    </footer>
+  </div>
+</body>
+</html>

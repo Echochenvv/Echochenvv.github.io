@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>从分配 issue 到看到结果——一次任务的完整旅程 · Echochenvv</title>
+  <meta name="description" content="Echochenvv 的个人博客">
+  <link rel="stylesheet" href="/css/echo.css">
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="Echochenvv" type="application/atom+xml">
+</head>
+<body class="inner-template">
+  <div class="mask mask-top" aria-hidden="true"></div>
+  <div class="mask mask-bottom" aria-hidden="true"></div>
+  <div class="mask mask-left" aria-hidden="true"></div>
+  <div class="mask mask-right" aria-hidden="true"></div>
+
+  <div class="mobile-red-header">
+    <a class="mobile-brand" href="/">Echochenvv</a>
+    <button class="mobile-menu-btn" onclick="document.querySelector('.mobile-nav').classList.toggle('open')" aria-label="打开导航">☰</button>
+  </div>
+  <nav class="mobile-nav" aria-label="移动端导航">
+    <a href="/">首页</a>
+    <a href="/archives/">归档</a>
+    <a href="/categories/%E6%96%87%E7%AB%A0/">文章</a>
+    <a href="/categories/%E6%91%84%E5%BD%B1/">摄影</a>
+    <a href="/categories/%E4%B9%92%E4%B9%93%E7%90%83/">乒乓球</a>
+    <a href="/categories/AI/">AI</a>
+  </nav>
+
+  <div class="page-shell">
+    <div class="notice ptn" role="note">
+      <strong>Now</strong>
+      <span>Echochenvv 的个人博客</span>
+      <span>2026-06-23</span>
+    </div>
+
+    
+      <header class="masthead masthead-compact">
+        <div>
+          <div class="brand-line">
+            <a class="logo" href="/">Echochenvv</a>
+            <span class="tagline">Personal Journal</span>
+          </div>
+          <h1>从分配 issue 到看到结果——一次任务的完整旅程</h1>
+          <p class="intro">Echochenvv 的个人博客</p>
+        </div>
+        <nav class="nav-box" aria-label="主导航">
+          <div class="nav-title">Directory</div>
+          <div class="nav-list">
+            <a href="/"><span>首页</span><span>Home</span></a>
+            <a href="/archives/"><span>归档</span><span>Archive</span></a>
+            <a href="/categories/%E6%96%87%E7%AB%A0/"><span>文章</span><span>Writing</span></a>
+            <a href="/categories/%E6%91%84%E5%BD%B1/"><span>摄影</span><span>Photo</span></a>
+            <a href="/categories/AI/"><span>AI</span><span>AI</span></a>
+          </div>
+        </nav>
+      </header>
+    
+
+    <article class="article-page">
+  <header class="article-header">
+    <p class="eyebrow">2026-06-23</p>
+    <h1>从分配 issue 到看到结果——一次任务的完整旅程</h1>
+  </header>
+  <div class="article-body">
+    <p>前两篇讲了 Multica 是什么、三层如何分工。这一篇把镜头拉近，跟踪一个任务的完整生命周期——从你点击”分配”到评论里出现结果。</p>
+<p>整个过程只有五个状态：<strong>queued → dispatched → running → completed（或 failed）</strong>。</p>
+<p>你在 Multica Web 端把 <code>SWO-518</code> 分配给了名为”Blog沉淀”的 agent。浏览器发送一个 HTTP 请求到 Server。Server 做了三件事：更新 issue 的 assignee，在任务队列中插入一条记录，把状态设为 <code>queued</code>。同时通过 WebSocket 告诉前端：”assignee 变了，任务已入队”。你在页面上看到 agent 名字出现，状态栏显示”排队中”。</p>
+<p>与此同时，你本机的 daemon 在后台每几秒轮询一次 Server。它发现了这条新任务——assignee 是自己（这个 workspace 注册的 agent），状态是 <code>queued</code>。daemon 发送一个领取请求，Server 把状态改为 <code>dispatched</code>，确保不会有另一个 daemon 重复领取。</p>
+<p>现在状态是 <code>dispatched</code>。daemon 开始准备执行环境：创建一个隔离的工作目录（类似 <code>git worktree</code>），把 issue 的标题和描述作为 prompt 的一部分注入，然后调用你配置好的 AI 编程工具——比如 Claude Code。状态变为 <code>running</code>。</p>
+<p>Claude Code 在隔离目录里读取仓库代码，理解 issue 要求，开始改文件。它可能会运行测试、检查 lint、甚至自己执行 git 操作。每一步的中间输出可以通过 daemon 回传到 Server，但真正重要的是最终结果。</p>
+<p>执行完成后，Claude Code 退出。daemon 收集输出（包括修改了哪些文件、命令行输出、错误信息如果有的话），打包发送给 Server。Server 把结果保存为一条 issue 评论，任务状态变为 <code>completed</code>。WebSocket 再次推送——你的前端实时看到评论里出现了一长段 agent 的输出，任务标记为绿色对勾。</p>
+<p>如果中途出了问题——比如 Claude Code 调用了不存在的文件、API 超时、或者 agent 自己判定无法完成任务——daemon 会把错误信息回传，任务状态变为 <code>failed</code>。你看到的是红色标记，评论里有失败原因。</p>
+<p>理解这个生命周期不是为了欣赏它的精巧，而是为了<strong>建立排障心智</strong>。如果你的任务一直卡在 <code>queued</code>：daemon 没在线。卡在 <code>dispatched</code> 但迟迟不进 <code>running</code>：可能是工作目录创建失败、或者工具不可用。<code>failed</code> 之后怎么办？读 agent 的评论，修正 issue 描述，重新触发。</p>
+<p>还有一个你可能没注意到的细节：整个过程前端不需要刷新。当你把浏览器开着 Multica 页面时，WebSocket 会静默地推送每一次状态变化。这意味着你可以分配一个任务，然后离开去开会——回来的时候，结果已经在评论里了。</p>
+<p>这种”fire and forget”的体验，底层靠的是任务队列的异步模型。Server 从来不阻塞等待 daemon 完成——它只管入队、记录状态变化、推送通知。daemon 和 AI 工具跑多久，Server 都不在意。这跟传统 Web 应用里”等一个 API 返回”的心智完全不同，更像是消息队列的消费者模型。</p>
+<p>下一次你的 agent 任务卡住时，不用猜——顺着这五个状态排查就行。</p>
+
+  </div>
+</article>
+
+
+    <footer class="footer">
+      <span>© 2026 Echochenvv · Built with <a target="_blank" href="https://hexo.io/" rel="noreferrer noopener">Hexo</a></span>
+      <span>Back to life, one note at a time.</span>
+    </footer>
+  </div>
+</body>
+</html>

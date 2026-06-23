@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>为什么 AI 任务跑在你的机器上 · Echochenvv</title>
+  <meta name="description" content="Echochenvv 的个人博客">
+  <link rel="stylesheet" href="/css/echo.css">
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="Echochenvv" type="application/atom+xml">
+</head>
+<body class="inner-template">
+  <div class="mask mask-top" aria-hidden="true"></div>
+  <div class="mask mask-bottom" aria-hidden="true"></div>
+  <div class="mask mask-left" aria-hidden="true"></div>
+  <div class="mask mask-right" aria-hidden="true"></div>
+
+  <div class="mobile-red-header">
+    <a class="mobile-brand" href="/">Echochenvv</a>
+    <button class="mobile-menu-btn" onclick="document.querySelector('.mobile-nav').classList.toggle('open')" aria-label="打开导航">☰</button>
+  </div>
+  <nav class="mobile-nav" aria-label="移动端导航">
+    <a href="/">首页</a>
+    <a href="/archives/">归档</a>
+    <a href="/categories/%E6%96%87%E7%AB%A0/">文章</a>
+    <a href="/categories/%E6%91%84%E5%BD%B1/">摄影</a>
+    <a href="/categories/%E4%B9%92%E4%B9%93%E7%90%83/">乒乓球</a>
+    <a href="/categories/AI/">AI</a>
+  </nav>
+
+  <div class="page-shell">
+    <div class="notice ptn" role="note">
+      <strong>Now</strong>
+      <span>Echochenvv 的个人博客</span>
+      <span>2026-06-23</span>
+    </div>
+
+    
+      <header class="masthead masthead-compact">
+        <div>
+          <div class="brand-line">
+            <a class="logo" href="/">Echochenvv</a>
+            <span class="tagline">Personal Journal</span>
+          </div>
+          <h1>为什么 AI 任务跑在你的机器上</h1>
+          <p class="intro">Echochenvv 的个人博客</p>
+        </div>
+        <nav class="nav-box" aria-label="主导航">
+          <div class="nav-title">Directory</div>
+          <div class="nav-list">
+            <a href="/"><span>首页</span><span>Home</span></a>
+            <a href="/archives/"><span>归档</span><span>Archive</span></a>
+            <a href="/categories/%E6%96%87%E7%AB%A0/"><span>文章</span><span>Writing</span></a>
+            <a href="/categories/%E6%91%84%E5%BD%B1/"><span>摄影</span><span>Photo</span></a>
+            <a href="/categories/AI/"><span>AI</span><span>AI</span></a>
+          </div>
+        </nav>
+      </header>
+    
+
+    <article class="article-page">
+  <header class="article-header">
+    <p class="eyebrow">2026-06-23</p>
+    <h1>为什么 AI 任务跑在你的机器上</h1>
+  </header>
+  <div class="article-body">
+    <p>有一个问题 Multica 的新用户几乎都会问：<strong>“为什么 agent 不能直接在你们的服务器上跑？”</strong></p>
+<p>简短回答是：因为你的代码、你的密钥、你已经配好的工具都在你自己的机器上。让 agent 上服务器跑——技术上做得到，但意味着你要把代码推给平台、把 API key 交给平台、把所有工具重新在云端配置一遍。这不仅是安全风险，也是效率损失。</p>
+<p>Multica 做了一个有意识的设计决策：<strong>智能体不跑在平台服务器上，而是在你自己的机器上。</strong> Server 负责协作——管 issue、管队列、推送通知。但它从来不需要访问你的代码仓库、你的 <code>.env</code> 文件、你的 SSH key。</p>
+<p>这个决策的实际好处比你想象的多。</p>
+<p><strong>首先是安全边界。</strong> 使用 Multica 时，你的 Claude API key、GitHub token、npm 私有源认证——这些敏感凭证始终只存在于你的本地机器上。Agent 执行需要的任何授权，用的都是你本机已经登录好的 session。平台服务器不需要、也不会接触到这些凭据。相比”把代码和密钥上传到某个云端 agent 服务”的模式，这种本地执行天然隔离了凭据泄露半径。</p>
+<p><strong>其次是工具复用。</strong> 你已经在本地配置了一套 AI 编程工具。Claude Code 你用惯了，Cursor 你买了 license，Codex 你配好了自定义 rules。Multica 的 daemon 会自动探测这些工具，并在任务到来时选择可用的来执行。不需要在平台侧重新搭建执行环境、重新写配置、重新调试工具链。”我本机能跑什么，Multica agent 就能用什么”——这是本地执行带来的零迁移成本。</p>
+<p><strong>第三是执行环境的可控性。</strong> 你的代码依赖特定版本的 Node、需要访问内网的私有 npm registry、要用本地安装的字体渲染图片——这些在本地都是”本来就正常”的事情。但如果 agent 在云端执行，每个环境差异都可能变成一个需要排查的问题。本地执行意味着 agent 的任务环境和你的开发环境是同一套，没有”在我机器上能跑”的 gap。</p>
+<p>当然，这个设计有它的 trade-off。daemon 需要在线——你的笔记本合上了，agent 就没法领取新任务。本地工具需要可用——Claude Code 恰好 crash 了、token 过期了，任务就会 failed。机器性能也会影响执行效率——大型 repo 的 clone 和索引在你本机完成，SSD 速度和网络带宽都是变量。</p>
+<p>但 Multica 的选择是务实的：与其在云端维护一套”和用户本地类似但永远不完全一致”的执行环境，不如把调度和协作放在云端，把执行留在本地。这个取舍的代价是用户需要维护一个健康的本地 daemon 状态；收益是安全、可控、零配置迁移。</p>
+<p>把本地 daemon 当成你的 <strong>AI 执行网关</strong>——它就像你机器上的一个常驻 agent runner。它不写代码（那是 Claude Code 的工作），但它确保任务来了有人接、接了能跑、跑了有结果。</p>
+
+  </div>
+</article>
+
+
+    <footer class="footer">
+      <span>© 2026 Echochenvv · Built with <a target="_blank" href="https://hexo.io/" rel="noreferrer noopener">Hexo</a></span>
+      <span>Back to life, one note at a time.</span>
+    </footer>
+  </div>
+</body>
+</html>
